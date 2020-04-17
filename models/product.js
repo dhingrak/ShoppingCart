@@ -54,7 +54,11 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    files: [fileSchema]
+    files: [fileSchema],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 

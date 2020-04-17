@@ -1,3 +1,4 @@
+require('express-async-errors');
 const express = require('express');
 const app = express();
 const config = require('config');
@@ -7,6 +8,7 @@ const userProfile = require('./routers/userProfile');
 const products = require('./routers/product');
 const notification = require('./routers/notification');
 const userCart = require('./routers/userCart');
+const userOrders = require('./routers/order');
 const error = require('./middleware/error');
 const logger = require('./utils/logger');
 
@@ -28,10 +30,14 @@ app.use('/user/me', userProfile);
 app.use('/products', products);
 app.use('/notifications', notification);
 app.use('/userCart', userCart);
+app.use('/orders', userOrders);
 
 app.use(error);
 
-
+// Handle unhandled rejections 
+process.on('unhandledRejection', (ex) => {
+    throw ex;
+  });
 
 
 const PORT = process.env.PORT || 4000;

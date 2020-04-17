@@ -53,7 +53,15 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order'
+    }]
 })
 
 

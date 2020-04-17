@@ -21,6 +21,10 @@ const fileSchema = new mongoose.Schema({
         max: 255,
         required: true,
         trim: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 

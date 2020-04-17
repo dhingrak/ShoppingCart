@@ -11,7 +11,8 @@ const { deleteFiles, daleteDatabaseFiles } = require('../utils/unlinkFiles');
 // GET: Get all the products
 router.get('/', async(req, res, next) => {
 
-    const products  = await Product.find();
+    const products  = await Product.find()
+                                   .select('name description brand upc category quantity price')
     if(products.length <= 0){
         return res.status(400).send('No products found');
     }
@@ -48,7 +49,7 @@ router.post('/', [auth, admin], async(req, res, next) => {
             });
         }
         await product.save();
-        res.send(product);
+        res.send({ message: "Product created successfully", ProductId: product._id });
     })
    
 });
@@ -73,7 +74,7 @@ router.post('/:id' , [auth, admin], async(req, res, next) => {
     }, {new: true})
 
     await product.save();
-    res.send(product);
+    res.send({ message: "Product updated successfully", ProductId: product._id });
 });
 
 
@@ -87,7 +88,7 @@ router.delete('/:id', [auth, admin], async(req, res, next) => {
     if(!product) return res.status(400).send('Product does not exist');
 
     daleteDatabaseFiles(product.files);
-    res.send(product);
+    res.send({ message: "Product deleted successfully", ProductId: product._id });
 });
 
 
