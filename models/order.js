@@ -17,7 +17,7 @@ const orderSchema = new mongoose.Schema({
         }
     }],
     cartTotal: {
-        type: Number
+        type: mongoose.Decimal128
     },
     createdAt: {
         type: Date,
@@ -31,10 +31,10 @@ const orderSchema = new mongoose.Schema({
         type: Date
     },
     tax: {
-        type: Number       // Need to upgrade to decimal128
+        type: mongoose.Decimal128       // Need to upgrade to decimal128
     },
     grandTotal: {
-        type: Number       // Need to upgrade to decimal128
+        type: mongoose.Decimal128       // Need to upgrade to decimal128
     }
 })
 
