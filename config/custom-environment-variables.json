@@ -1,3 +1,5 @@
 {
-    "jwtPrivateKey": "shoppingCart_privateKey"
+    "jwtPrivateKey": "shoppingCart_privateKey",
+    "email": "email",
+    "password": "password"
 }

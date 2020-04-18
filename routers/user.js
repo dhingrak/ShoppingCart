@@ -5,6 +5,7 @@ const { User, validateUser, validateLoginCredentials, validatePassword } = requi
 const auth = require('../middleware/auth');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const sendEmail = require('../utils/email');
 
 
 // POST: Register a new user
@@ -24,6 +25,14 @@ router.post('/', async (req, res,next) => {
     // Generating auth token for the user
     const token = user.generateAuthToken();
 
+    // Sending an email for verification process. Need to add the verification logic
+    const emailObject = {
+        email: user.email,
+        subject: 'Welcome',
+        firstName: user.firstName,
+        body: `Welcome. Your account created successfully.`
+    }
+    sendEmail(emailObject);
     await user.save();
     res.header('x-auth-token', token).send(_.pick(user, 'firstName', 'lastName', 'username', 'email', 'address'));
 

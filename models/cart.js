@@ -12,6 +12,9 @@ const cartSchema = new mongoose.Schema({
         },
         quantity: {
             type: Number
+        },
+        inStock: {
+            type: Boolean
         }
     }],
     cartTotal: {

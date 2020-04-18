@@ -1,8 +1,8 @@
 require('express-async-errors');
+require('./startup/db');
 const express = require('express');
 const app = express();
 const config = require('config');
-require('./startup/db');
 const user = require('./routers/user'); 
 const userProfile = require('./routers/userProfile');
 const products = require('./routers/product');
